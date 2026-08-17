@@ -11,6 +11,7 @@ public class DimEnergyNetworking {
         final PayloadRegistrar registrar = event.registrar(DimEnergy.MOD_ID);
 
         registrar.playToServer(UpdateDimEnergy.TYPE, UpdateDimEnergy.STREAM_CODEC, UpdateDimEnergy::handle);
+
         registrar.playToClient(SyncDimEnergy.TYPE, SyncDimEnergy.STREAM_CODEC, SyncDimEnergy::handle);
     }
 }

@@ -34,12 +34,10 @@ public record SyncDimEnergy(BlockPos pos, long energy) implements CustomPacketPa
 
     public static void handle(SyncDimEnergy msg, IPayloadContext ctx) {
         ctx.enqueueWork(() -> {
-            Level level = net.minecraft.client.Minecraft.getInstance().level;
-            if (level == null) return;
+            Level level = ctx.player().level();
 
             if (level.getBlockEntity(msg.pos) instanceof BlockEntityDimEnergy be) {
 
-                // update CLIENT cached value (this is what GUI reads)
                 be.energyState.serverEnergy = msg.energy();
                 be.energyState.clientEnergy = msg.energy();
             }

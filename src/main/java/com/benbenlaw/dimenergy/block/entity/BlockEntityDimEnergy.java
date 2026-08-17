@@ -103,14 +103,11 @@ public class BlockEntityDimEnergy extends BlockEntityFrequencyOwner {
 
                 int maxMove = (int) Math.min(available, space);
 
-                // simulate insert
                 int simulated = targetHandler.insert(maxMove, tx);
                 if (simulated <= 0) continue;
 
-                // verify REAL delta expectation
                 long after = targetHandler.getAmountAsLong();
 
-                // ❗ if generator or fake sink → no real storage change
                 if (after == before) continue;
 
                 int actualAccepted = (int) Math.min(simulated, after - before);
