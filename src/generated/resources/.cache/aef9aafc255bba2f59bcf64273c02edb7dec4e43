@@ -1,3 +1,5 @@
-// 26.1.2	2026-04-19T13:58:45.1589623	DimEnergyRecipeProvider
+// 26.1.2	2026-10-22T11:14:00.9206545	DimEnergyRecipeProvider
 cb2566b92d19a4951cc19b5a81e6aee768238a1d data/dimenergy/advancement/recipes/misc/dimensional_energy.json
+e8f1cdbc124070667cad76fb1e520375c6a1b223 data/dimenergy/advancement/recipes/misc/dimensional_rift_energy.json
 e56c684843fd10a6c642ea890743b6ea6c6efa6b data/dimenergy/recipe/dimensional_energy.json
+7a6e8f17e0b956df80b4b0235adcaa5c404c6c56 data/dimenergy/recipe/dimensional_rift_energy.json

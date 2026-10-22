@@ -1,6 +1,7 @@
 package com.benbenlaw.dimenergy.network;
 
 import com.benbenlaw.dimenergy.DimEnergy;
+import com.benbenlaw.dimenergy.RiftCompat;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
@@ -13,5 +14,9 @@ public class DimEnergyNetworking {
         registrar.playToServer(UpdateDimEnergy.TYPE, UpdateDimEnergy.STREAM_CODEC, UpdateDimEnergy::handle);
 
         registrar.playToClient(SyncDimEnergy.TYPE, SyncDimEnergy.STREAM_CODEC, SyncDimEnergy::handle);
+
+        if (RiftCompat.isLoaded()) {
+            RiftCompat.registerNetworking(registrar);
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.benbenlaw.dimenergy.data;
 import java.util.concurrent.CompletableFuture;
 
 import com.benbenlaw.dimenergy.DimEnergy;
+import com.benbenlaw.dimenergy.RiftCompat;
 import edivad.dimstorage.setup.ModRegistration;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -11,8 +12,10 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 
 public class DimEnergyRecipeProvider extends RecipeProvider {
 
@@ -53,5 +56,12 @@ public class DimEnergyRecipeProvider extends RecipeProvider {
             .define('d', ModRegistration.SOLIDDIMCORE)
             .unlockedBy(getHasName(Items.REDSTONE_BLOCK), has(Items.REDSTONE_BLOCK))
             .save(output);
+
+    // Placeholder recipe: upgrade an energy cell into a rift energy cell
+    ShapelessRecipeBuilder.shapeless(this.items, RecipeCategory.MISC, RiftCompat.DIMRIFTENERGY.get())
+            .requires(DimEnergy.DIMENERGY.get())
+            .requires(Items.ENDER_EYE)
+            .unlockedBy(getHasName(DimEnergy.DIMENERGY.get()), has(DimEnergy.DIMENERGY.get()))
+            .save(output.withConditions(new ModLoadedCondition(RiftCompat.RIFTS_MOD_ID)));
   }
 }

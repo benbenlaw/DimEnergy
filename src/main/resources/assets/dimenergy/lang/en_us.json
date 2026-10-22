@@ -1,3 +1,7 @@
 {
-  "block.dimenergy.dimensional_energy" : "Dimensional Energy Cell"
+  "block.dimenergy.dimensional_energy": "Dimensional Energy Cell",
+  "block.dimenergy.dimensional_rift_energy": "Dimensional Rift Energy Cell",
+  "gui.dimenergy.exporting": "Exporting:",
+  "gui.dimenergy.true": "True",
+  "gui.dimenergy.false": "False"
 }

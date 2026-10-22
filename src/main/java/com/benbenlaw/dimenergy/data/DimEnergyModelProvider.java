@@ -3,7 +3,7 @@ package com.benbenlaw.dimenergy.data;
 import java.util.stream.Stream;
 
 import com.benbenlaw.dimenergy.DimEnergy;
-import com.benbenlaw.dimenergy.block.DimEnergyBlock;
+import com.benbenlaw.dimenergy.RiftCompat;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -25,9 +25,10 @@ public class DimEnergyModelProvider extends ModelProvider {
   @Override
   protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
     createDimEnergy(blockModels, DimEnergy.DIMENERGY.get());
+    createDimEnergy(blockModels, RiftCompat.DIMRIFTENERGY.get());
   }
 
-  private void createDimEnergy(BlockModelGenerators blockModels, DimEnergyBlock block) {
+  private void createDimEnergy(BlockModelGenerators blockModels, Block block) {
     var tm = new TextureMapping()
         .put(TextureSlot.DOWN, TextureMapping.getBlockTexture(block, "_bottom"))
         .put(TextureSlot.UP, TextureMapping.getBlockTexture(block, "_top"))

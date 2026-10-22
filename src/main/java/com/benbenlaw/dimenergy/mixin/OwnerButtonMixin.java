@@ -1,6 +1,7 @@
 package com.benbenlaw.dimenergy.mixin;
 
 import com.benbenlaw.dimenergy.block.entity.BlockEntityDimEnergy;
+import com.benbenlaw.dimenergy.RiftCompat;
 import com.benbenlaw.dimenergy.network.UpdateDimEnergy;
 import edivad.dimstorage.blockentity.BlockEntityFrequencyOwner;
 import edivad.dimstorage.client.screen.element.button.OwnerButton;
@@ -23,6 +24,8 @@ public abstract class OwnerButtonMixin {
 
         if (this.owner instanceof BlockEntityDimEnergy energy) {
             ClientPacketDistributor.sendToServer(new UpdateDimEnergy(energy));
+        } else if (RiftCompat.isLoaded()) {
+            RiftCompat.sendUpdateIfRift(this.owner);
         }
     }
 }

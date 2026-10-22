@@ -1,5 +1,9 @@
 {
   "values": [
-    "dimenergy:dimensional_energy"
+    "dimenergy:dimensional_energy",
+    {
+      "id": "dimenergy:dimensional_rift_energy",
+      "required": false
+    }
   ]
 }

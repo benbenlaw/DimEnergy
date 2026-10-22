@@ -1,6 +1,7 @@
 package com.benbenlaw.dimenergy;
 
 import com.benbenlaw.dimenergy.block.DimEnergyBlock;
+import edivad.dimstorage.blockentity.BlockEntityFrequencyOwner;
 import com.benbenlaw.dimenergy.block.DimEnergyCapabilities;
 import com.benbenlaw.dimenergy.block.entity.BlockEntityDimEnergy;
 import com.benbenlaw.dimenergy.network.DimEnergyNetworking;
@@ -50,11 +51,11 @@ public class DimEnergy {
     public static final String MOD_ID = "dimenergy";
     private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger();
 
-    private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MOD_ID);
+    static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MOD_ID);
 
-    private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
-    private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY;
-    private static final DeferredRegister<MenuType<?>> MENU;
+    static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
+    static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY;
+    static final DeferredRegister<MenuType<?>> MENU;
 
     public static final DeferredBlock<DimEnergyBlock> DIMENERGY;
     public static final DeferredItem<BlockItem> DIMENERGY_ITEM;
@@ -62,6 +63,10 @@ public class DimEnergy {
     public static final DeferredHolder DIMENERGY_MENU;
 
     public DimEnergy(final IEventBus eventBus, final ModContainer modContainer) {
+
+        if (RiftCompat.isLoaded()) {
+            RiftCompat.init(eventBus);
+        }
 
         BLOCKS.register(eventBus);
         ITEMS.register(eventBus);;
@@ -102,6 +107,9 @@ public class DimEnergy {
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register((MenuType) DIMENERGY_MENU.get(), ScreenDimEnergy::new);
+            if (RiftCompat.isLoaded()) {
+                RiftCompat.registerScreens(event);
+            }
 
 
         }
@@ -111,7 +119,8 @@ public class DimEnergy {
     }
 
     private void handleCommonSetup(FMLCommonSetupEvent event) {
-        DimStorageManager.registerPlugin(new DimEnergyPlugin());
+        // DimStorage's plugin registry is a plain HashMap, so register on the main thread
+        event.enqueueWork(() -> DimStorageManager.registerPlugin(new DimEnergyPlugin()));
     }
 
     public void registerNetworking(RegisterPayloadHandlersEvent event) {
@@ -125,6 +134,11 @@ public class DimEnergy {
 
             event.accept(DimEnergy.DIMENERGY.get());
         }
+    }
+
+    /** True for the energy cells (and the Rift cell when Rifts is installed), which export instead of "lock". */
+    public static boolean isEnergyCell(BlockEntityFrequencyOwner owner) {
+        return owner instanceof BlockEntityDimEnergy || (RiftCompat.isLoaded() && RiftCompat.isRiftCell(owner));
     }
 
     public static Identifier identifier(String path) {

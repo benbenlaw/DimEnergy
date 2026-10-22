@@ -1,4 +1,7 @@
-// 26.1.2	2026-04-18T16:42:12.5679984	Model Definitions - dimenergy
+// 26.1.2	2026-10-22T11:10:04.9342764	Model Definitions - dimenergy
 b0bff3208ffba8d0ca165af6c4e12c3a1e9699cf assets/dimenergy/blockstates/dimensional_energy.json
+899529be1b1801224ce2b93ac661d75842a58c50 assets/dimenergy/blockstates/dimensional_rift_energy.json
 25d5c1d852d3834797d5ddd89af3e0f0434229cd assets/dimenergy/items/dimensional_energy.json
+c78f632a87386e38ca1c0bda4ecb3db8e2f28e80 assets/dimenergy/items/dimensional_rift_energy.json
 4379d693de291f5cfc561c1aa51ab79771ca0a22 assets/dimenergy/models/block/dimensional_energy.json
+e600abaae164752a9374f853299a1261ed9c86e2 assets/dimenergy/models/block/dimensional_rift_energy.json

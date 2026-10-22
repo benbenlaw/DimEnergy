@@ -83,7 +83,15 @@ dependencies {
     //Pipez
     implementation("curse.maven:pipez-443900:7859957")
     //Ender IO
-    runtimeOnly("curse.maven:ender-io-64578:7932315")
+    runtimeOnly("curse.maven:ender-io-64578:8192909")
+    //Flopper
+    runtimeOnly("curse.maven:flopper-290404:8469554")
+    //Cyclops Core
+    runtimeOnly("curse.maven:cyclopscore-232758:8527468")
+    //Rifts
+    implementation("curse.maven:bbl-rifts-1721086:9079632")
+    //BBL Core (required by Rifts)
+    runtimeOnly("curse.maven:bbl-core-1135181:8893880")
 
 }
 

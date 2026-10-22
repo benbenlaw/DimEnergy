@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:block/cube",
+  "display": {
+    "gui": {
+      "rotation": [
+        25,
+        45,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    }
+  },
+  "textures": {
+    "down": "dimenergy:block/dimensional_rift_energy_bottom",
+    "east": "dimenergy:block/dimensional_rift_energy_sides",
+    "north": "dimenergy:block/dimensional_rift_energy_sides",
+    "particle": "dimenergy:block/dimensional_rift_energy_top",
+    "south": "dimenergy:block/dimensional_rift_energy_sides",
+    "up": "dimenergy:block/dimensional_rift_energy_top",
+    "west": "dimenergy:block/dimensional_rift_energy_sides"
+  }
+}
